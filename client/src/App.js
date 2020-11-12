@@ -1,19 +1,19 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import PrivateRoute from './components/auth/PrivateRoute'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/auth/PrivateRoute';
 
-import './App.css'
+import './App.css';
 
 import Profiles from './components/profiles/profiles.js';
-import Navbar from './components/layout/navbar/Navbar.js'
-import Login from './components/auth/login/Login.js'
-import Planets from './components/planets/Planets.js'
-import Administrator from './components/admin/Administrator.js'
-import Home from './components/home/Home.js'
+import Navbar from './components/layout/navbar/Navbar.js';
+import Login from './components/auth/login/Login.js';
+import Planets from './components/planets/Planets.js';
+import Administrator from './components/admin/Administrator.js';
+import Home from './components/home/Home.js';
 import { Component } from 'react';
 
 class App extends Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       isLogged: false,
       isAdmin: false
@@ -23,23 +23,21 @@ class App extends Component {
   }
 
   onLogout(){
-    localStorage.removeItem('email')
-    localStorage.removeItem('role')
-    this.setState({isLogged: false, isAdmin: false})
+    localStorage.removeItem('email');
+    localStorage.removeItem('role');
+    this.setState({isLogged: false, isAdmin: false});
   }
 
   onLogin(){
-      this.setState({isLogged: true, isAdmin: localStorage.getItem('role') === 'admin'})
+      this.setState({isLogged: true, isAdmin: localStorage.getItem('role') === 'admin'});
   }
 
   componentDidMount(){
 
     if(localStorage.getItem('email')){
-      this.setState({isLogged: true})
-      console.log(localStorage.getItem('email'))
+      this.setState({isLogged: true});
     } else {
-      this.setState({isLogged: false})
-      console.log(localStorage.getItem('email'))
+      this.setState({isLogged: false});
     }
   }
 

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 import axios from 'axios'
 
@@ -14,16 +14,16 @@ class Login extends Component {
       error: ''
     }
 
-    this.onSubmit = this.onSubmit.bind(this)
-    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   onChange (e) {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit (e) {
-    e.preventDefault()
+    e.preventDefault();
 
     const userData = {
       email: this.state.email,
@@ -33,13 +33,12 @@ class Login extends Component {
     axios.post('http://localhost:5000/api/profiles/login', userData)
     .then(res => {
         if(res.data.email){
-            localStorage.setItem('email', res.data.email)
-            localStorage.setItem('role', res.data.role)
-            this.props.onLogin()
-            this.setState({ redirect: true, showError: false })
+            localStorage.setItem('email', res.data.email);
+            localStorage.setItem('role', res.data.role);
+            this.props.onLogin();
+            this.setState({ redirect: true, showError: false });
         } else {
-            console.log(res.data)
-            this.setState({ showError: true, error: res.data})
+            this.setState({ showError: true, error: res.data});
         }
         
     })
@@ -77,4 +76,4 @@ class Login extends Component {
 }
 
 
-export default Login
+export default Login;
