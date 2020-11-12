@@ -38,9 +38,13 @@ class Navbar extends Component {
           <Link className='navbar-brand' to='/profile'>
             Profile
           </Link>
-          <Link className='navbar-brand' to='/administrator'>
-            Administrator
-          </Link>
+          {
+            this.props.isAdmin ? 
+            <Link className='navbar-brand' to='/administrator'>
+               Administrator
+             </Link> : ''
+          }
+          
         </div>
       </nav>
     )

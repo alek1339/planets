@@ -16,21 +16,20 @@ class App extends Component {
     super(props)
     this.state = {
       isLogged: false,
+      isAdmin: false
     }
 
     this.onLogout = this.onLogout.bind(this)
   }
 
   onLogout(){
-    console.log('logout')
     localStorage.removeItem('email')
     localStorage.removeItem('role')
-    this.setState({isLogged: false})
+    this.setState({isLogged: false, isAdmin: false})
   }
 
   onLogin(){
-    console.log('login')
-    this.setState({isLogged: true})
+      this.setState({isLogged: true, isAdmin: localStorage.getItem('role') === 'admin'})
   }
 
   componentDidMount(){
@@ -49,7 +48,7 @@ class App extends Component {
       <Router>
           <div className="App">
           <header className="App-header">
-              <Navbar handleLogout={this.onLogout.bind(this)} isLogged={this.state.isLogged} />
+              <Navbar handleLogout={this.onLogout.bind(this)} isLogged={this.state.isLogged} isAdmin={this.state.isAdmin} />
                 <Switch>
                 <Route exact path='/' component={Home} />
                   <Route exact path='/login'  render={(props) => (
